@@ -25,6 +25,8 @@ namespace OrchardCore.AdminMenu.Controllers
         private readonly IAdminMenuService _adminMenuService;
         private readonly ISiteService _siteService;
         private readonly INotifier _notifier;
+        private readonly IStringLocalizer S;
+        private readonly IHtmlLocalizer H;
 
         public MenuController(
             IAuthorizationService authorizationService,
@@ -42,13 +44,11 @@ namespace OrchardCore.AdminMenu.Controllers
             New = shapeFactory;
             _notifier = notifier;
 
-            T = stringLocalizer;
+            S = stringLocalizer;
             H = htmlLocalizer;
             Logger = logger;
         }
 
-        public IStringLocalizer T { get; set; }
-        public IHtmlLocalizer H { get; set; }
         public ILogger Logger { get; set; }
         public dynamic New { get; set; }
 

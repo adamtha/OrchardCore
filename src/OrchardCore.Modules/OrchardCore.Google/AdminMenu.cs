@@ -12,24 +12,23 @@ namespace OrchardCore.Google
     public class GoogleAuthenticationAdminMenu : INavigationProvider
     {
         private readonly ShellDescriptor _shellDescriptor;
+        private readonly IStringLocalizer S;
 
         public GoogleAuthenticationAdminMenu(
             IStringLocalizer<GoogleAuthenticationAdminMenu> localizer,
             ShellDescriptor shellDescriptor)
         {
-            T = localizer;
+            S = localizer;
             _shellDescriptor = shellDescriptor;
         }
-
-        public IStringLocalizer T { get; set; }
 
         public Task BuildNavigationAsync(string name, NavigationBuilder builder)
         {
             if (String.Equals(name, "admin", StringComparison.OrdinalIgnoreCase))
             {
-                builder.Add(T["Security"], security => security
-                        .Add(T["Authentication"], authentication => authentication
-                        .Add(T["Google"], "16", settings => settings
+                builder.Add(S["Security"], security => security
+                        .Add(S["Authentication"], authentication => authentication
+                        .Add(S["Google"], "16", settings => settings
                         .AddClass("google").Id("google")
                             .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = GoogleConstants.Features.GoogleAuthentication })
                             .Permission(Permissions.ManageGoogleAuthentication)
@@ -44,25 +43,24 @@ namespace OrchardCore.Google
     public class GoogleAnalyticsAdminMenu : INavigationProvider
     {
         private readonly ShellDescriptor _shellDescriptor;
+        private readonly IStringLocalizer S;
 
         public GoogleAnalyticsAdminMenu(
             IStringLocalizer<GoogleAuthenticationAdminMenu> localizer,
             ShellDescriptor shellDescriptor)
         {
-            T = localizer;
+            S = localizer;
             _shellDescriptor = shellDescriptor;
         }
-
-        public IStringLocalizer T { get; set; }
 
         public Task BuildNavigationAsync(string name, NavigationBuilder builder)
         {
             if (String.Equals(name, "admin", StringComparison.OrdinalIgnoreCase))
             {
-                builder.Add(T["Configuration"], configuration => configuration
-                            .Add(T["Google"], "15", settings => settings
+                builder.Add(S["Configuration"], configuration => configuration
+                            .Add(S["Google"], "15", settings => settings
                             .AddClass("google").Id("google"))
-                            .Add(T["Google Analytics"], "10", client => client
+                            .Add(S["Google Analytics"], "10", client => client
                                 .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = GoogleConstants.Features.GoogleAnalytics })
                                 .Permission(Permissions.ManageGoogleAnalytics)
                                 .LocalNav())

@@ -26,6 +26,8 @@ namespace OrchardCore.Queries.Controllers
         private readonly IEnumerable<IQuerySource> _querySources;
         private readonly IDisplayManager<Query> _displayManager;
         private readonly ISession _session;
+        private readonly IStringLocalizer S;
+        private readonly IHtmlLocalizer H;
 
         public AdminController(
             IDisplayManager<Query> displayManager,
@@ -48,13 +50,11 @@ namespace OrchardCore.Queries.Controllers
             New = shapeFactory;
             _notifier = notifier;
 
-            T = stringLocalizer;
+            S = stringLocalizer;
             H = htmlLocalizer;
         }
 
         public dynamic New { get; set; }
-        public IStringLocalizer T { get; set; }
-        public IHtmlLocalizer H { get; set; }
 
         public async Task<IActionResult> Index(QueryIndexOptions options, PagerParameters pagerParameters)
         {
